@@ -93,33 +93,44 @@ import Foundation
 //
 //Solution().romanToInt("III")
 
-// 14. 最长公共前缀
-//class Solution {
-//    func longestCommonPrefix(_ strs: [String]) -> String {
-//        guard strs.count > 0 else { return "" }
-//        guard strs.count != 1 else { return strs.first! }
-//
-//        let strings = strs.sorted { (s1, s2) -> Bool in
-//            return s1.count < s2.count
-//        }
-//
-//        var common = strings.first!
-//        for str in strings {
-//            if str.hasPrefix(common) {
-//                continue
-//            } else {
-//                guard common.count > 1 else { return "" }
-//                for _ in 0...common.count - 1 {
-//                    common = String(common.dropLast())
-//                    if str.hasPrefix(common) {
-//                        break
-//                    }
-//                }
-//            }
-//        }
-//
-//        return common
-//    }
-//}
-//
-//Solution().longestCommonPrefix(["dog","racecar","car"])
+// 20. 有效的括号
+class Solution {
+    func isValid(_ s: String) -> Bool {
+        guard !s.isEmpty else { return true }
+
+        var stack = Array<Character>()
+
+        for index in s.indices {
+            let c = s[index]
+            if "{[(".contains(c) {
+                stack.append(c)
+            } else {
+                guard !stack.isEmpty else {
+                    return false
+                }
+                let top = stack.popLast()!
+                if !top.isMatch(c) {
+                    return false
+                }
+            }
+        }
+        return stack.isEmpty
+    }
+}
+
+extension Character {
+    public func isMatch(_ c: Character) -> Bool {
+        switch self {
+        case "{":
+            return c == "}"
+        case "[":
+            return c == "]"
+        case "(":
+            return c == ")"
+        default:
+            return false
+        }
+    }
+}
+
+Solution().isValid("([)]")
