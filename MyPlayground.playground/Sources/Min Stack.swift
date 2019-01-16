@@ -19,8 +19,8 @@ class MinStack {
     }
     
     func pop() {
-        stack.popLast()
-        minStack.popLast()
+        let _ = stack.popLast()
+        let _ = minStack.popLast()
     }
     
     func top() -> Int {
