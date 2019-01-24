@@ -1,7 +1,7 @@
 import Foundation
 
 /// 13. 罗马数字转整数
-let map = [
+fileprivate let map = [
     "I" : 1,
     "V" : 5,
     "X" : 10,
