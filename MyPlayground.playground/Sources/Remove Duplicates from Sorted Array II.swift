@@ -1,6 +1,6 @@
 import Foundation
 
-public func removeDuplicates(_ nums: inout [Int]) -> Int {
+public func removeDuplicatesII(_ nums: inout [Int]) -> Int {
     guard nums.count > 2 else { return nums.count }
     
     var index = 1
